@@ -2,6 +2,9 @@ package com.lab.android_4a.model;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Comic {
 
     @SerializedName("num")

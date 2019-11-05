@@ -13,11 +13,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.jakewharton.picasso.OkHttp3Downloader;
-import com.lab.android_4a.model.RetroPhoto;
+import com.lab.android_4a.model.Comic;
 import com.squareup.picasso.Picasso;
 
-public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
-    private List<RetroPhoto> dataList;
+public class ComicListAdapter extends RecyclerView.Adapter<ComicListAdapter.MyViewHolder> {
+    private List<Comic> dataList;
     private Context context;
 
     // Provide a reference to the views for each data item
@@ -50,14 +50,14 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     }
 
     // Provide a suitable constructor (depends on the kind of dataset)
-    public MyAdapter(Context context, List<RetroPhoto> dataList) {
+    public ComicListAdapter(Context context, List<Comic> dataList) {
         this.context = context;
         this.dataList = dataList;
     }
 
     // Create new views (invoked by the layout manager)
     @Override
-    public MyAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public ComicListAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         // create a new view
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         View v = inflater.inflate(R.layout.row_layout, parent, false);
@@ -75,7 +75,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
         Picasso.Builder builder = new Picasso.Builder(context);
         builder.downloader(new OkHttp3Downloader(context));
-        builder.build().load(dataList.get(position).getThumbnailUrl())
+        builder.build().load(dataList.get(position).getImg())
                 .placeholder(R.drawable.ic_launcher_background).error(R.drawable.ic_launcher_background).into(holder.coverImage);
         holder.txtHeader.setText(name);
 

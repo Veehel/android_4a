@@ -20,8 +20,8 @@ public interface GetDataService {
     Call<List<RetroPhoto>> getAllPhotos();
 
     @GET("/info.0.json")
-    Call<List<Comic>> getCurrent();
+    Call<Comic> getCurrent();
 
     @GET("/{xkcd_number}/info.0.json")
-    Call<List<Comic>> getComic(@Path("xkcd_number") int xkcd_number);
+    Call<Comic> getComic(@Path("xkcd_number") int xkcd_number);
 }

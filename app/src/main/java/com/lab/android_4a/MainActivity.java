@@ -1,7 +1,6 @@
 package com.lab.android_4a;
 
 
-import java.util.ArrayList;
 import java.util.List;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,11 +9,10 @@ import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.widget.Toast;
 
-import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.lab.android_4a.model.RetroPhoto;
+import com.lab.android_4a.model.Comic;
 import com.lab.android_4a.network.GetDataService;
 import com.lab.android_4a.network.RetrofitClientInstance;
 
@@ -26,7 +24,7 @@ import retrofit2.Response;
 public class MainActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
-    private MyAdapter mAdapter;
+    private ComicListAdapter mAdapter;
     private RecyclerView.LayoutManager layoutManager;
     ProgressDialog progressDialog;
 
@@ -51,28 +49,27 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setAdapter(mAdapter);
 
         GetDataService service = RetrofitClientInstance.getRetrofitInstance().create(GetDataService.class);
-        Call<List<RetroPhoto>> call = service.getAllPhotos();
+        Call<Comic> call = service.getCurrent();
 
-        call.enqueue(new Callback<List<RetroPhoto>>() {
+        call.enqueue(new Callback<Comic>() {
             @Override
-            public void onResponse(Call<List<RetroPhoto>> call, Response<List<RetroPhoto>> response) {
+            public void onResponse(Call<Comic> call, Response<Comic> response) {
                 progressDialog.dismiss();
                 generateDataList(response.body());
             }
 
             @Override
-            public void onFailure(Call<List<RetroPhoto>> call, Throwable t) {
+            public void onFailure(Call<Comic> call, Throwable t) {
                 progressDialog.dismiss();
                 Toast.makeText(MainActivity.this, "Something went wrong...Please try later!", Toast.LENGTH_SHORT).show();
             }
         });
     }
 
-
     /*Method to generate List of data using RecyclerView with custom adapter*/
-    private void generateDataList(List<RetroPhoto> photoList) {
+    private void generateDataList(List<Comic> xkcdList) {
         recyclerView = findViewById(R.id.my_recycler_view);
-        mAdapter = new MyAdapter(this, photoList);
+        mAdapter = new ComicListAdapter(this, xkcdList);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(MainActivity.this);
         recyclerView.setLayoutManager(layoutManager);
 
