@@ -12,7 +12,9 @@ import retrofit2.http.GET;
 
 public interface GetDataService {
 
-    public static final String ENDPOINT = "http://xkcd.com";
+    public static final String BASE_URL_XKCD = "http://xkcd.com";
+
+    public static final String BASE_URL_PLACEHOLDER = "https://jsonplaceholder.typicode.com";
 
     @GET("/photos")
     Call<List<RetroPhoto>> getAllPhotos();
