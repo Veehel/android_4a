@@ -3,7 +3,6 @@ package com.lab.android_4a.model;
 import com.google.gson.annotations.SerializedName;
 
 public class RetroPhoto {
-
     @SerializedName("albumId")
     private Integer albumId;
     @SerializedName("id")

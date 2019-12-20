@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/homeFragment"
+        android:icon="@drawable/ic_home_circle_outline"
+        android:title="Home" />
+    <item
+        android:id="@+id/comicListFragment"
+        android:icon="@drawable/ic_format_list_numbered"
+        android:title="List" />
+</menu>

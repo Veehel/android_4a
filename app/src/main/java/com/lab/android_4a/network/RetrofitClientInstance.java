@@ -5,15 +5,16 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitClientInstance {
 
-    private static Retrofit retrofit;
+    public static Object getRetrofitInstance;
+    public static Retrofit retrofit;
 
-    public static Retrofit getRetrofitInstance() {
+    public static GetDataService getRetrofitInstance() {
         if (retrofit == null) {
             retrofit = new retrofit2.Retrofit.Builder()
                     .baseUrl(GetDataService.BASE_URL_XKCD)
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();
         }
-        return retrofit;
+        return retrofit.create(GetDataService.class);
     }
 }
